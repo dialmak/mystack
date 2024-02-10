@@ -29,7 +29,9 @@
 
 Клонуємо репозитарій
 
-git clone 
+```bash
+git clone https://github.com/dialmak/mystack.git
+```
 
 Переходимо в папку з docker-compose.yml
 ```bash
