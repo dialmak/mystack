@@ -6,7 +6,7 @@
 Клонуємо репозиторій, переходимо в папку з docker-compose.yml та створюємо іміджі контейнерів:
 
 ```bash
-git clone https://github.com/dialmak/mystack.git && cd mystack && docker compose build
+cd ~ && git clone https://github.com/dialmak/mystack.git && cd mystack && docker compose build
 ```
 
 Запускаємо  контейнери у фоновому режимі:
