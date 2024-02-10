@@ -1,0 +1,128 @@
+version: "3.7"
+name: mystack
+services:
+
+  db:
+    image: db
+    build: ./mysql
+    container_name: my-db
+    hostname: db
+    environment:
+      - TZ=Europe/Kyiv
+    restart: unless-stopped
+    networks:
+      - my-net
+    volumes:
+      - db-data:/var/lib/mysql
+
+  mqtt:
+    image: mqtt
+    build: ./mqtt
+    container_name: my-mqtt
+    hostname: mqtt
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Kyiv
+    networks:
+      - my-net
+    ports:
+      - 1883:1883
+      - 9001:9001
+    volumes:
+      - mqtt-config:/mosquitto/config
+      - mqtt-data:/mosquitto/data
+      - mqtt-log:/mosquitto/log
+
+  node:
+    image: node
+    build: ./node
+    container_name: my-node
+    hostname: node
+    environment:
+      - TZ=Europe/Kyiv
+    restart: unless-stopped
+    networks:
+      - my-net
+    depends_on:
+      - db
+      - mqtt
+
+  influxdb:
+    image: influxdb:latest
+    container_name: my-influxdb
+    hostname: influxdb
+    restart: unless-stopped
+    env_file:
+      - stack.env
+    volumes:
+      - influxdb2-storage:/var/lib/influxdb2:rw
+    ports:
+      - 8086:8086
+    networks:
+      - my-net
+
+  telegraf:
+    image: telegraf:latest
+    container_name: my-telegraf
+    hostname: telegraf
+    restart: unless-stopped
+    volumes:
+      - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    env_file:
+      - stack.env
+    networks:
+      - my-net
+
+  grafana:
+    image: grafana/grafana-oss:latest
+    container_name: my-grafana
+    hostname: grafana
+    environment:
+      - TZ=Europe/Kyiv
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=osa00NET
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_INSTALL_PLUGINS=grafana-clock-panel
+    restart: unless-stopped
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    ports:
+      - 3000:3000
+    networks:
+      - my-net
+
+  node-red:
+    image: nodered/node-red:latest
+    container_name: my-node-red
+    hostname: node-red
+    environment:
+      - TZ=Europe/Kyiv
+      - NODE_RED_CREDENTIAL_SECRET=osa00NET
+    restart: unless-stopped
+    volumes:
+      - node-red-storage:/data
+    ports:
+      - 1880:1880
+    networks:
+      - my-net
+
+volumes:
+  influxdb2-storage:
+    name: influxdb2-storage
+  grafana-storage:
+    name: grafana-storage
+  db-data:
+    name: db-data
+  mqtt-config:
+    name: mqtt-config
+  mqtt-data:
+    name: mqtt-data
+  mqtt-log:
+    name: mqtt-log
+  node-red-storage:
+    name: node-red-storage
+    
+networks:
+  my-net:
+    name: my-net
