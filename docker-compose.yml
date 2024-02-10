@@ -15,6 +15,16 @@ services:
     volumes:
       - db-data:/var/lib/mysql
 
+  adminer:
+    image: adminer
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Kyiv
+    networks:
+      - my-net    
+    ports:
+      - 8080:8080
+
   mqtt:
     image: mqtt
     build: ./mqtt
