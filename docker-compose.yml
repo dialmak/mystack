@@ -92,16 +92,17 @@ services:
     networks:
       - my-net
 
-  node-red:
-    image: nodered/node-red:latest
-    container_name: my-node-red
-    hostname: node-red
+  nodered:
+    image: nodered
+    build: ./node-red
+    container_name: my-nodered
+    hostname: nodered
     environment:
       - TZ=Europe/Kyiv
       - NODE_RED_CREDENTIAL_SECRET=osa00NET
     restart: unless-stopped
     volumes:
-      - node-red-storage:/data
+      - nodered-storage:/data
     ports:
       - 1880:1880
     networks:
@@ -120,8 +121,8 @@ volumes:
     name: mqtt-data
   mqtt-log:
     name: mqtt-log
-  node-red-storage:
-    name: node-red-storage
+  nodered-storage:
+    name: nodered-storage
     
 networks:
   my-net:
