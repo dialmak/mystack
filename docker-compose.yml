@@ -97,10 +97,8 @@ services:
     build: ./node-red
     container_name: my-nodered
     hostname: nodered
-    environment:
-      - TZ=Europe/Kyiv
-      - "NODE_RED_CREDENTIAL_SECRET=osa00NET"
-      - "NODE_RED_CREDENTIAL_HASH=$2b$08$HLmhEA7h/T9scYWuoXtxH.FxdJ.kZpbLTxnG1ygkO2uzurD5aeaeW"
+    env_file:
+      - nodered.env
     restart: unless-stopped
     volumes:
       - nodered-storage:/data
