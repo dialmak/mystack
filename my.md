@@ -6,6 +6,7 @@
 Клонуємо репозиторій, переходимо в папку з docker-compose.yml та створюємо іміджі контейнерів:
 
 ```bash
+sudo rm -r mystack/
 cd ~ && git clone https://github.com/dialmak/mystack.git && cd mystack && docker compose build
 ```
 
