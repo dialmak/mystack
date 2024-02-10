@@ -1,55 +1,22 @@
 # mystack docker
 
 
-## Структура каталогів
+## Створюємо та запускаємо контейнери
+
+Клонуємо репозиторій, переходимо в папку з docker-compose.yml та створюємо іміджі контейнерів:
 
 ```bash
-├── docker-compose.yml
-├── mqtt
-│   ├── config
-│   │   ├── mosquitto.conf
-│   │   └── passwd_file
-│   └── Dockerfile
-├── mysql
-│   ├── Dockerfile
-│   └── sql
-│       └── init.sql
-├── node
-│   ├── Dockerfile
-│   └── node
-│       └── mysqlitto.js
-├── node-red
-│   └── data
-├── stack.env
-└── telegraf
-    └── telegraf.conf
+git clone https://github.com/dialmak/mystack.git && cd mystack && docker compose build
 ```
 
-## Запуск
-
-Клонуємо репозитарій
-
-```bash
-git clone https://github.com/dialmak/mystack.git
-```
-
-Переходимо в папку з docker-compose.yml
-```bash
-cd mystack
-```
-Створити іміджі контейнерів:
-
-```bash
-docker compose build
-```
-Запустити контейнери у фоновому режимі:
+Запускаємо  контейнери у фоновому режимі:
 
 ```bash
 docker compose up -d
 ```
 
 
-##  Додавання користувачів до mosquitto
+##  Додаємо користувачів до mosquitto
 
 Заходимо в контейнер mosquitto
 ```bash
