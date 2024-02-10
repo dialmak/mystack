@@ -7,7 +7,7 @@
 
 ```bash
 cd .. && sudo rm -r mystack/
-cd ~ && git clone https://github.com/dialmak/mystack.git && cd mystack && docker compose build
+clear && cd ~ && git clone https://github.com/dialmak/mystack.git && cd mystack && docker compose build
 ```
 
 Запускаємо  контейнери у фоновому режимі:
