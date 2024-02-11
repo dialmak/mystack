@@ -45,6 +45,23 @@ services:
       - mqtt-data:/mosquitto/data
       - mqtt-log:/mosquitto/log
 
+  mqttx:
+    image: emqx/mqttx-cli
+    container_name: mqttx
+    hostname: mqttx
+    command:
+      - /bin/sh
+      - -c
+      - |
+        mqttx conn -h 'mqtt' -p 1883 -u 'mqttx' -P 'osa00NET'
+    environment:
+      - TZ=Europe/Kyiv
+    restart: unless-stopped
+    networks:
+      - my-net
+    depends_on:
+      - mqtt  
+
   node:
     image: node
     build: ./node

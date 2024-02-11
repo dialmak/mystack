@@ -2,3 +2,5 @@ ostap:osa00NET
 telegraf:osa00NET
 mysqlitto:osa00NET
 device:osa00NET
+mqttx:osa00NET
+
