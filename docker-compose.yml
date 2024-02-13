@@ -53,7 +53,7 @@ services:
       - /bin/sh
       - -c
       - |
-        mqttx conn -h 'mqtt' -p 1883 -u 'mqttx' -P 'osa00NET'
+        mqttx sub -v -t '#' -h 'mqtt' -p 1883 -u 'mqttx' -P 'osa00NET'
     environment:
       - TZ=Europe/Kyiv
     restart: unless-stopped
@@ -133,6 +133,23 @@ services:
       - nodered-storage:/data
     ports:
       - 1880:1880
+    networks:
+      - my-net
+
+  proxy:
+    image: 'jc21/nginx-proxy-manager:latest'
+    container_name: my-proxy
+    hostname: proxy
+    restart: unless-stopped
+    ports:
+      - '80:80' # Public HTTP Port
+      - '443:443' # Public HTTPS Port
+      - '81:81' # Admin Web Port
+    environment:
+      DISABLE_IPV6: 'true'
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
     networks:
       - my-net
 
