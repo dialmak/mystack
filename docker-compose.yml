@@ -132,7 +132,7 @@ services:
     volumes:
       - nodered-storage:/data
     ports:
-      - 1880:1880
+      - '1880:1880'
     networks:
       - my-net
 
@@ -142,9 +142,9 @@ services:
     hostname: proxy
     restart: unless-stopped
     ports:
-      - '80:80' # Public HTTP Port
-      - '443:443' # Public HTTPS Port
-      - '81:81' # Admin Web Port
+      - '80:80'
+      - '443:443' 
+      - '81:81'
     environment:
       DISABLE_IPV6: 'true'
     volumes:
