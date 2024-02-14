@@ -1,14 +1,15 @@
 # mystack docker
-db 
-adminer:8080
-mqtt:1883 mqtt:9001
-mqttx
-node
-influxdb:8086
-telegraf
-grafana:3000
-nodered:1880
-proxy:80 proxy:81 proxy:443
+| db            |           |          |
+| ------------- | --------- | -------- |
+| adminer:8080  |           |          |
+| mqtt:1883     | mqtt:9001 |          |
+| mqttx         |           |          |
+| node          |           |          |
+| influxdb:8086 |           |          |
+| telegraf      |           |          |
+| grafana:3000  |           |          |
+| nodered:1880  |           |          |
+| proxy:80      | proxy:443 | proxy:81 |
 
 
 ## Створюємо та запускаємо контейнери
