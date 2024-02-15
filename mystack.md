@@ -1,17 +1,27 @@
 # mystack docker
 
-| hostname:port | hostname:port | hostname:port |
-| ------------- | ------------- | ------------- |
-| db            |               |               |
-| adminer:8080  |               |               |
-| mqtt:1883     | mqtt:9001     |               |
-| mqttx         |               |               |
-| node          |               |               |
-| influxdb:8086 |               |               |
-| telegraf      |               |               |
-| grafana:3000  |               |               |
-| nodered:1880  |               |               |
-| proxy:80      | proxy:443     | proxy:81      |
+| service name | hostname:port       | hostname:port      |
+| ------------ | ------------------- | ------------------ |
+| wireguard    | 192.168.100.3:51820 |                    |
+| proxmox      | 192.168.100.4:8006  |                    |
+| portainer    | 192.168.100.2:9000  | 192.168.100.2:9443 |
+| proxy        | 192.168.100.2:80    | 192.168.100.2:443  |
+| ssh          | 192.168.100.2:22    |                    |
+
+
+
+| hostname:port | hostname:port |
+| ------------- | ------------- |
+| db            |               |
+| adminer:8080  |               |
+| mqtt:1883     | mqtt:9001     |
+| mqttx         |               |
+| node          |               |
+| influxdb:8086 |               |
+| telegraf      |               |
+| grafana:3000  |               |
+| nodered:1880  |               |
+| proxy:81      |               |
 
 
 ## Створюємо та запускаємо контейнери

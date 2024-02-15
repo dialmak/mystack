@@ -148,8 +148,8 @@ services:
     environment:
       DISABLE_IPV6: 'true'
     volumes:
-      - ./nginx-data:/data
-      - ./letsencrypt:/etc/letsencrypt
+      - ../mystack-data/nginx-data:/data
+      - ../mystack-data/letsencrypt:/etc/letsencrypt
     networks:
       - my-net
 
