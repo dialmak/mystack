@@ -142,7 +142,7 @@ services:
     hostname: proxy
     restart: unless-stopped
     ports:
-      - '80:80'
+      - '8008:80'
       - '443:443' 
       - '81:81'
     environment:
