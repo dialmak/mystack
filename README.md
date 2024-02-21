@@ -1,12 +1,12 @@
 ## Програмний стек для ІПКЗ<br>
 MySQL<br>
-AdminerL<br>
-MosquittoL<br>
+Adminer<br>
+Mosquitto<br>
 Mqttx<br>
-NodeL<br>
-InfluxdbL<br>
-TelegrafL<br>	
-GrafanaL<br>
-Node-redL<br>
-Nginx Proxy ManagerL<br>
+Node<br>
+Influxdb<br>
+Telegraf<br>	
+Grafana<br>
+Node-red<br>
+Nginx Proxy Manager<br>
 #### https://github.com/dialmak/mystack/blob/main/mystack.md
