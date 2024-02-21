@@ -1,5 +1,5 @@
 ## Програмний стек для ІПКЗ<br>
-#### MySQL<br>
+MySQL<br>
 AdminerL<br>
 MosquittoL<br>
 Mqttx<br>
